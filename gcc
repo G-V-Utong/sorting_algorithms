@@ -1,0 +1,36 @@
+#!/bin/bash
+ID=""
+TYPE=""
+STRUCT=""
+PRINTER="array"
+VERSION=""
+PROGRAM="a.out"
+
+if [[ $BASH_ARGC -ge 2 && $BASH_ARGC -le 5 ]]; then
+  if [[ $BASH_ARGC -ge 1 ]]; then
+    ID=$1
+  fi
+  if [[ $BASH_ARGC -ge 2 && "$2" != "-" ]]; then
+    TYPE="$2_"
+    PROGRAM="$2.out"
+  fi
+  if [[ $BASH_ARGC -ge 3 && "$3" != "-" ]]; then
+    STRUCT="_$3"
+    PRINTER="$3"
+  fi
+  if [[ $BASH_ARGC -ge 4 && "$4" != '-' ]]; then
+    VERSION="_$4"
+    if [[ "$2" == '-' ]]; then
+      PROGRAM="$4.out"
+    fi
+  fi
+else
+  echo "Usage: ./gcc ID [TYPE|-] [STRUCT|-] [VERSION|-]" >&2
+  exit 1
+fi
+
+echo -e "Compiling program..."
+gcc -Wall -Werror -Wextra -pedantic -std=gnu89 \
+  tests/"$ID"-main.c "$ID"-"$TYPE"sort"$STRUCT""$VERSION".c "print_$PRINTER".c -o $PROGRAM
+# echo tests/"$ID"-main.c "$ID"-"$TYPE"sort"$STRUCT""$VERSION".c "print_$PRINTER".c -o $PROGRAM
+[ $? -eq 0 ] && echo -e "Running executable [./$PROGRAM]..." && ./$PROGRAM
