@@ -21,18 +21,17 @@
 
 void bubble_sort(int *array, size_t size)
 {
-	size_t i, iter, new_size;
+	size_t i;
+	int pass = 0;
 	int temp = 0;
 	int unsorted = TRUE;
 
-	iter = size - 1;
-
-	/* Traveersing the array */
+	/* Traversing the array */
 	while (unsorted)
 	{
 		unsorted = FALSE;
 		/* Comparing elements */
-		for (i = 0; i < iter; i++)
+		for (i = 0; i < (size - 1 - pass); i++)
 		{
 			/* Swapping elements */
 			if (array[i] > array[i + 1])
@@ -41,10 +40,9 @@ void bubble_sort(int *array, size_t size)
 				array[i] = array[i + 1];
 				array[i + 1] = temp;
 				unsorted = TRUE;
-				new_size = i;
 				print_array(array, size);
 			}
 		}
-		iter = new_size;
+		pass += 1;
 	}
 }
