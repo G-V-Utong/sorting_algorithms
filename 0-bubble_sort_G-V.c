@@ -8,22 +8,17 @@
 void bubble_sort(int *array, size_t size)
 {
 	size_t i, j;
-	int tmp, unsorted = 1;
+	int tmp;
 
 	for (i = 0; i < size; i++)
 	{
-		unsorted = 0;
-		for (j = 0; j < size - 1 - i; j++)
+		for (j = 0; j < size - 1; j++)
 		{
 			if (array[j + 1] < array[j])
 			{
 				SWAP(array, j, j + 1);
-				unsorted = 1;
 				print_array(array, size);
 			}
 		}
-		/*Exits loop if array is sorted before full iteration*/
-		if (unsorted == 0)
-			break;
 	}
 }
