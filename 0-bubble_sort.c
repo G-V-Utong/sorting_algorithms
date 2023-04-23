@@ -1,6 +1,3 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
 #include "sort.h"
 
 #ifndef TRUE
@@ -15,8 +12,6 @@
  * bubble_sort - a sorting algorithm based on Bubble sort
  * @array: array to be sorted
  * @size: size of the array
- *
- * Return: nothing
  */
 
 void bubble_sort(int *array, size_t size)
