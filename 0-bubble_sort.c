@@ -1,43 +1,24 @@
 #include "sort.h"
 
-#ifndef TRUE
-#define TRUE 1
-#endif
-
-#ifndef FALSE
-#define FALSE 0
-#endif
-
 /**
- * bubble_sort - a sorting algorithm based on Bubble sort
- * @array: array to be sorted
- * @size: size of the array
+ * bubble_sort - Sorts an array using the bubble sort algorithm.
+ * @array: The array to sort.
+ * @size: The length of the array.
  */
-
 void bubble_sort(int *array, size_t size)
 {
-	size_t i;
-	int pass = 0;
-	int temp = 0;
-	int unsorted = TRUE;
+	size_t i, j;
+	int tmp;
 
-	/* Traversing the array */
-	while (unsorted)
+	for (i = 0; i < size; i++)
 	{
-		unsorted = FALSE;
-		/* Comparing elements */
-		for (i = 0; i < (size - 1 - pass); i++)
+		for (j = 0; j < size - 1 - i; j++)
 		{
-			/* Swapping elements */
-			if (array[i] > array[i + 1])
+			if (array[j + 1] < array[j])
 			{
-				temp = array[i];
-				array[i] = array[i + 1];
-				array[i + 1] = temp;
-				unsorted = TRUE;
+				SWAP(array, j, j + 1);
 				print_array(array, size);
 			}
 		}
-		pass += 1;
 	}
 }
